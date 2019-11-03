@@ -1,0 +1,98 @@
+<CodeGenerationInfo>
+  <ToolchainSettings>
+    <option>
+      <name>PE_G_4PEx_ToolChain_C_Compiler_Includes</name>
+      <values lines_count="9">
+        <Line>"${S32_SDK_PATH}/platform/drivers/src/clock/MPC57xx"</Line>
+        <Line>"${S32_SDK_PATH}/rtos/osif/"</Line>
+        <Line>"${S32_SDK_PATH}/platform/pal/can/inc"</Line>
+        <Line>"${S32_SDK_PATH}/platform/pal/adc/inc"</Line>
+        <Line>"${S32_SDK_PATH}/platform/devices"</Line>
+        <Line>"${S32_SDK_PATH}/platform/devices/common"</Line>
+        <Line>"${S32_SDK_PATH}/platform/devices/MPC5748G/include"</Line>
+        <Line>"${S32_SDK_PATH}/platform/devices/MPC5748G/startup"</Line>
+        <Line>"${S32_SDK_PATH}/platform/drivers/inc"</Line>
+      </values>
+    </option>
+    <option>
+      <name>PE_G_4PEx_ilg_gnuarmeclipse_managedbuild_cross_option_c_compiler_defs</name>
+      <values lines_count="1">
+        <Line>"CPU_MPC5748G_176"</Line>
+      </values>
+    </option>
+  </ToolchainSettings>
+  <GeneratedFilesList>
+    <GeneratedByPE>
+      <File Name="SDK/platform/drivers/src/edma/edma_irq.c" FileDate="2018-04-13, 19:07:55" FileAge="1523642875660" FileType="262144" />
+      <File Name="SDK/platform/drivers/inc/interrupt_manager.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875448" FileType="262144" />
+      <File Name="SDK/platform/devices/MPC5748G/startup/system_MPC5748G.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875351" FileType="262144" />
+      <File Name="Generated_Code/adc_pal_cfg.h" FileDate="2018-04-26, 18:23:19" FileAge="1524763399725" FileType="45637" CompNumb="2" />
+      <File Name="SDK/platform/devices/MPC5748G/startup/system_MPC5748G.c" FileDate="2018-04-13, 19:07:55" FileAge="1523642875347" FileType="262144" />
+      <File Name="Documentation/ECU_Engine_Settings.xml" FileDate="2018-04-26, 18:23:19" FileAge="1524763399856" FileType="3072" />
+      <File Name="SDK/platform/pal/adc/src/adc_pal.c" FileDate="2018-04-13, 19:07:56" FileAge="1523642876280" FileType="262144" />
+      <File Name="Generated_Code/pin_mux.h" FileDate="2018-03-20, 10:29:10" FileAge="1521541750000" FileType="45637" CompNumb="10" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2018-04-26, 18:23:19" FileAge="1524763399794" FileType="45637" CompNumb="2" />
+      <File Name="Generated_Code/pin_mux.c" FileDate="2018-03-20, 10:29:10" FileAge="1521541750000" FileType="45637" CompNumb="10" />
+      <File Name="SDK/platform/drivers/src/pins/pins_siul2_hw_access.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875969" FileType="262144" />
+      <File Name="SDK/platform/pal/can/src/can_pal.c" FileDate="2018-04-13, 19:07:56" FileAge="1523642876305" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/flexcan/flexcan_driver.c" FileDate="2018-04-13, 19:07:55" FileAge="1523642875809" FileType="262144" />
+      <File Name="Generated_Code/can_pal1.h" FileDate="2018-03-19, 17:49:22" FileAge="1521481762000" FileType="45637" CompNumb="11" />
+      <File Name="Generated_Code/adc_pal1.h" FileDate="2018-04-26, 18:23:19" FileAge="1524763399756" FileType="45637" CompNumb="12" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2018-03-19, 17:49:22" FileAge="1521481762000" FileType="45637" CompNumb="2" />
+      <File Name="SDK/platform/devices/common/s32_core_e200.h" FileDate="2018-04-13, 19:07:51" FileAge="1523642871988" FileType="262144" />
+      <File Name="SDK/platform/devices/status.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875360" FileType="262144" />
+      <File Name="Generated_Code/clockMan1.h" FileDate="2018-03-19, 17:49:22" FileAge="1521481762000" FileType="45637" CompNumb="7" />
+      <File Name="SDK/platform/drivers/src/pins/pins_siul2_hw_access.c" FileDate="2018-04-13, 19:07:55" FileAge="1523642875962" FileType="262144" />
+      <File Name="Generated_Code/can_pal1.c" FileDate="2018-04-09, 12:33:48" FileAge="1523273628000" FileType="45637" CompNumb="11" />
+      <File Name="Generated_Code/adc_pal1.c" FileDate="2018-04-26, 18:23:19" FileAge="1524763399741" FileType="45637" CompNumb="12" />
+      <File Name="Generated_Code/clockMan1.c" FileDate="2018-03-19, 17:49:22" FileAge="1521481762000" FileType="45637" CompNumb="7" />
+      <File Name="SDK/platform/devices/MPC5748G/include/MPC5748G.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875099" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/clock/MPC57xx/mc_me_hw_access.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875575" FileType="262144" />
+      <File Name="SDK/platform/drivers/inc/edma_driver.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875393" FileType="262144" />
+      <File Name="SDK/platform/pal/adc/src/adc_irq.h" FileDate="2018-04-13, 19:07:56" FileAge="1523642876274" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/clock/MPC57xx/cgmcs_hw_access.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875552" FileType="262144" />
+      <File Name="SDK/platform/drivers/inc/flexcan_driver.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875429" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/clock/clock_manager.c" FileDate="2018-04-13, 19:07:55" FileAge="1523642875542" FileType="262144" />
+      <File Name="Sources/main.c" FileDate="2018-04-26, 18:22:59" FileAge="1524763379641" FileType="128" />
+      <File Name="SDK/platform/drivers/src/edma/edma_hw_access.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875657" FileType="262144" />
+      <File Name="SDK/platform/pal/adc/src/adc_irq.c" FileDate="2018-04-13, 19:07:56" FileAge="1523642876271" FileType="262144" />
+      <File Name="SDK/platform/devices/callbacks.h" FileDate="2018-04-13, 19:07:51" FileAge="1523642871977" FileType="262144" />
+      <File Name="Documentation/ECU_Engine.txt" FileDate="2018-04-26, 18:23:19" FileAge="1524763399892" FileType="3072" />
+      <File Name="SDK/platform/pal/can/inc/can_pal_mapping.h" FileDate="2018-04-13, 19:07:56" FileAge="1523642876300" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/edma/edma_hw_access.c" FileDate="2018-04-13, 19:07:55" FileAge="1523642875654" FileType="262144" />
+      <File Name="SDK/rtos/osif/osif.h" FileDate="2018-04-13, 19:07:56" FileAge="1523642876689" FileType="262144" />
+      <File Name="SDK/platform/devices/device_registers.h" FileDate="2018-04-13, 19:07:51" FileAge="1523642871994" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/clock/MPC57xx/clock_MPC57xx.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875562" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/edma/edma_driver.c" FileDate="2018-04-13, 19:07:55" FileAge="1523642875651" FileType="262144" />
+      <File Name="Generated_Code/dmaController1.h" FileDate="2018-03-19, 17:49:22" FileAge="1521481762000" FileType="45637" CompNumb="8" />
+      <File Name="SDK/platform/drivers/src/clock/MPC57xx/cgm_hw_access.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875555" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/clock/MPC57xx/clock_MPC57xx.c" FileDate="2018-04-13, 19:07:55" FileAge="1523642875559" FileType="262144" />
+      <File Name="Generated_Code/dmaController1.c" FileDate="2018-03-19, 17:49:22" FileAge="1521481762000" FileType="45637" CompNumb="8" />
+      <File Name="SDK/platform/drivers/src/flexcan/flexcan_hw_access.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875816" FileType="262144" />
+      <File Name="SDK/platform/devices/devassert.h" FileDate="2018-04-13, 19:07:51" FileAge="1523642871991" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/pins/pins_gpio_hw_access.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875959" FileType="262144" />
+      <File Name="SDK/platform/drivers/inc/adc_c55_driver.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875372" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/adc_c55/adc_c55_hw_access.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875521" FileType="262144" />
+      <File Name="Generated_Code/can_pal_cfg.h" FileDate="2018-03-19, 17:49:22" FileAge="1521481762000" FileType="45637" CompNumb="2" />
+      <File Name="SDK/platform/pal/adc/inc/adc_pal_mapping.h" FileDate="2018-04-13, 19:07:56" FileAge="1523642876267" FileType="262144" />
+      <File Name="SDK/rtos/osif/osif_baremetal.c" FileDate="2018-04-13, 19:07:56" FileAge="1523642876692" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/flexcan/flexcan_hw_access.c" FileDate="2018-04-13, 19:07:55" FileAge="1523642875812" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/flexcan/flexcan_irq.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875822" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/flexcan/flexcan_irq.c" FileDate="2018-04-13, 19:07:55" FileAge="1523642875819" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/interrupt/interrupt_manager_MPC57xx.c" FileDate="2018-04-13, 19:07:55" FileAge="1523642875900" FileType="262144" />
+      <File Name="SDK/platform/devices/startup.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875356" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/pins/pins_driver.c" FileDate="2018-04-13, 19:07:55" FileAge="1523642875956" FileType="262144" />
+      <File Name="SDK/platform/drivers/inc/clock_manager.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875377" FileType="262144" />
+      <File Name="SDK/platform/devices/startup.c" FileDate="2018-04-13, 19:07:55" FileAge="1523642875354" FileType="262144" />
+      <File Name="SDK/platform/pal/adc/inc/adc_pal.h" FileDate="2018-04-13, 19:07:56" FileAge="1523642876232" FileType="262144" />
+      <File Name="SDK/platform/devices/MPC5748G/include/MPC5748G_features.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875105" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/adc_c55/adc_c55_driver.c" FileDate="2018-04-13, 19:07:55" FileAge="1523642875519" FileType="262144" />
+      <File Name="SDK/platform/drivers/inc/pins_driver.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875457" FileType="262144" />
+      <File Name="SDK/platform/drivers/inc/bctu_driver.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875375" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/bctu/bctu_driver.c" FileDate="2018-04-13, 19:07:55" FileAge="1523642875530" FileType="262144" />
+      <File Name="SDK/platform/drivers/src/edma/edma_irq.h" FileDate="2018-04-13, 19:07:55" FileAge="1523642875663" FileType="262144" />
+      <File Name="SDK/platform/pal/can/inc/can_pal.h" FileDate="2018-04-13, 19:07:56" FileAge="1523642876297" FileType="262144" />
+    </GeneratedByPE>
+  </GeneratedFilesList>
+  <CodeGenReference>10</CodeGenReference>
+</CodeGenerationInfo>
