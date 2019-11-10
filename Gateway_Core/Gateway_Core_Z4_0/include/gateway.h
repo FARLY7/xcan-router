@@ -32,27 +32,21 @@ typedef enum
 	GW_STATUS_ROUTING_FRAME			/* Gateway is currently routing a frame */
 } gw_status_t;
 
-/*! @brief FlexCAN Driver callback function type
- * Implements : flexcan_callback_t_Class
- */
+
+
 typedef void (*gw_event_callback_t)(gw_state_t *gwState,
 									gw_event_t eventType);
 
-/*! @brief FlexCAN Driver error callback function type
- * Implements : flexcan_error_callback_t_Class
- */
 typedef bool (*gw_filter_callback_t)(gw_state_t *gwState,
 									 gw_event_t eventType,
 									 uint32_t channelID,
 									 uint32_t frameID);
 
-/*! @brief FlexCAN Driver error callback function type
- * Implements : flexcan_error_callback_t_Class
- */
 typedef uint32_t (*gw_routing_callback_t)(gw_state_t *gwState,
 										  gw_event_t eventType,
 										  uint32_t channelID,
 										  uint32_t frameID);
+
 
 typedef struct
 {

@@ -1,1 +1,0 @@
-This application demonstrates the implementation of a gateway and FOTA capabilities
