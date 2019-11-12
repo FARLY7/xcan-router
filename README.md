@@ -4,7 +4,7 @@ The intention of this project is to provide a open-source framework for a CAN Ga
 
 Initial testing was done on [Freescale/NXP MPC5748G](https://www.nxp.com/products/processors-and-microcontrollers/power-architecture/mpc55xx-5xxx-mcus/ultra-reliable-mpc57xx-mcus/ultra-reliable-mcus-for-automotive-industrial-control-and-gateway:MPC574xB-C-G) MCUs.
 
-**Note**: This is quite an old implementation, it is currently being redesigned and reimplemented with correct software practises.
+```Note: This is quite an old implementation, it is currently being redesigned and reimplemented with correct software practises.```
 
 **Features**
 * Frame-based routing of CAN frames across multiple CAN interfaces, using statically defined routing tables.
