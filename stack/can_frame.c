@@ -38,10 +38,28 @@ struct can_frame* can_frame_alloc(uint32_t size)
 /* Only copies frame descriptor, not frame payload. */
 struct can_frame* can_frame_copy(struct can_frame *f)
 {
-    //struct can_frame *f = malloc()
+    struct can_frame *new = CAN_ZALLOC(sizeof(struct can_frame));
+
+    if(!new)
+        return NULL;
+
+    memcpy(new, f, sizeof(struct can_frame));
+    *(new->usage_count) += 1;
+    new->next = NULL;
+    return new;
 }
 
 struct can_frame* can_frame_deepcopy(struct can_frame *f)
 {
-    
+    struct can_frame *new = can_frame_copy(f);
+
+    if(!f)
+        return NULL;
+
+    new->buffer = CAN_ZALLOC(new->buffer_len + sizeof(uint8_t));
+    memcpy(new->buffer, f->buffer, new->buffer_len);
+
+    new->usage_count = new->buffer + new->buffer_len;
+    *new->usage_count = 1;
+    return new;
 }
