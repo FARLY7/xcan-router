@@ -5,6 +5,8 @@
 
 #define CAN_MAX_DEVICE_NAME 16
 
+#define CAN_MAX_DEVICES 4
+
 struct can_device {
     uint8_t id;
     char name[CAN_MAX_DEVICE_NAME];

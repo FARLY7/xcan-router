@@ -1,7 +1,13 @@
 #include "can_device.h"
 
+struct can_device *devices[CAN_MAX_DEVICES];
+
+
 int can_device_init(struct can_device *dev, uint8_t id, const char *name)
 {
+    if(id >= CAN_MAX_DEVICES)
+        return -1;
+
     dev->id = id;
     strncpy(dev->name, name, CAN_MAX_DEVICE_NAME);
 
@@ -15,14 +21,15 @@ int can_device_init(struct can_device *dev, uint8_t id, const char *name)
         return -1;
     }
 
-    /* @todo Register device with stack */
-    // can_tree_insert(&device_tree, dev)
+    /* Register device with device pool */
+    devices[id] = dev;
 }
 
 
 void can_device_destroy(struct can_device *dev)
 {
     /** @todo */
+    
 }
 
 int can_devices_loop(int loop_score, int direction)
