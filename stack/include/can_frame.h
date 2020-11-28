@@ -1,6 +1,7 @@
 #ifndef CAN_FRAME_H
 #define CAN_FRAME_H
 
+#include "can_config.h"
 #include "can_device.h"
 
 struct can_frame {
@@ -18,7 +19,8 @@ struct can_frame {
 	/* Pointer to CAN device this frame belongs to */
 	struct can_device *dev;
 
-	/* Pointer to frame usage count */
+	/* Pointer to frame usage count, which is stored in the last byte
+       after the frame buffer */
 	uint8_t *usage_count; 
 };
 

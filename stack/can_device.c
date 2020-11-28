@@ -1,25 +1,22 @@
 #include "can_device.h"
 
-#include <string.h>
-
 int can_device_init(struct can_device *dev, uint8_t id, const char *name)
 {
 	dev->id = id;
 	strncpy(dev->name, name, CAN_MAX_DEVICE_NAME);
 
-	dev->q_in = malloc(sizeof(can_queue));
+	dev->q_in = CAN_ZALLOC(sizeof(can_queue));
 	if(!dev->q_in)
 		return -1;
 
-	dev->q_out = malloc(sizeof(can_queue));
+	dev->q_out = CAN_ZALLOC(sizeof(can_queue));
 	if(!dev->q_out) {
-		free(dev->q_in);
+		CAN_FREE(dev->q_in);
 		return -1;
 	}
 
 	/* @todo Register device with stack */
 	// can_tree_insert(&device_tree, dev)
-
 }
 
 

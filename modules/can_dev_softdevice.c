@@ -35,11 +35,14 @@ int poll(struct can_device *self, int loop_score)
 
 void can_softdevice_destroy(struct can_device *dev)
 {
-	/* Destroy device */
+    struct can_device_softdevice *sd = (struct can_device_softdevice *) dev;
+
+    free(sd);
+    printf("Device %s destroyed.\n", sd->dev.name);
 }
 
 
-struct can_device* create_can_soft_device(uint8_t id, char *name)
+struct can_device* can_softdevice_create(uint8_t id, char *name)
 {
 	struct can_device_softdevice *sd = malloc(sizeof(struct can_device_softdevice));
 
@@ -53,10 +56,10 @@ struct can_device* create_can_soft_device(uint8_t id, char *name)
 		return NULL;
 	}
 
-	sd->link_state = link_state;
-	sd->send = send;
-	sd->poll = poll;
-	sd->destory = can_device_destroy;
+	sd->dev.link_state = link_state;
+	sd->dev.send = send;
+	sd->dev.poll = poll;
+	sd->dev.destory = can_softdevice_destroy;
 	printf("Device %s created\n", name);
-	return (struct can_device *)dev;
+	return (struct can_device *) sd;
 }
