@@ -6,14 +6,14 @@
 #define CAN_MAX_DEVICE_NAME 16
 
 struct can_device {
-	uint8_t id;
-	char name[CAN_MAX_DEVICE_NAME];
-	struct can_queue *q_in;
-	struct can_queue *q_out;
-	int (*link_state)(struct can_device *self);
-	int (*send)(struct can_device *self, void *buf, int len);
-	int (*poll)(struct can_device *self, int loop_score);
-	void (*destroy)(struct can_device *self);
+    uint8_t id;
+    char name[CAN_MAX_DEVICE_NAME];
+    struct can_queue *q_in;
+    struct can_queue *q_out;
+    int (*link_state)(struct can_device *self);
+    int (*send)(struct can_device *self, void *buf, int len);
+    int (*poll)(struct can_device *self, int loop_score);
+    void (*destroy)(struct can_device *self);
 };
 
 int can_device_init(struct can_device *dev, uint8_t id, const char *name);
