@@ -7,9 +7,9 @@ It is the role of a central **gateway/router** device to pass certain messages b
 
 This is where the CAN Routing Stack fits in.
 
-## Features
-
 The intention of this project is to provide an open-source CAN routing stack.
+
+## Features
 
 This initial version will support the basic functionality:
 - Frame-based routing.
