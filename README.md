@@ -2,8 +2,8 @@
 
 ## Background
 
-CAN is a robust message-based multi-master bus protocol which is particularly dominant in the automotive industry. In large control systems with different domains, there is often several independent CAN buses with each bus connecting together the nodes of a particular domain in the system.
-It is the role of a central **gateway** device to pass certain messages between each these buses and enable the sharing of information across domains.
+CAN is a robust message-based multi-master bus protocol which is particularly dominant in the automotive industry. In large control systems with different domains, there are often several independent CAN buses with each bus connecting together the nodes of a particular domain in the system.
+It is the role of a central **gateway/router** device to pass certain messages between each these buses to enable the sharing of information across domains.
 
 This is where the CAN Routing Stack fits in.
 
