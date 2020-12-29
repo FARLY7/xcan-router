@@ -1,7 +1,9 @@
 #ifndef CAN_DEVICE_H
 #define CAN_DEVICE_H
 
+#include "can_config.h"
 #include "can_queue.h"
+#include "can_frame.h"
 
 #define CAN_MAX_DEVICE_NAME 16
 

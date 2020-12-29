@@ -52,7 +52,7 @@ struct can_device* can_softdevice_create(uint8_t id, char *name)
     if( 0 != can_device_init((struct can_device *) sd, id, name)) {
     
         printf("CAN SoftDevice init failed.\n");
-        can_softdevice_destroy(sd);
+        can_softdevice_destroy((struct can_device*) sd);
         return NULL;
     }
 

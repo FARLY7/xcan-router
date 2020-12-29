@@ -2,7 +2,6 @@
 #define CAN_FRAME_H
 
 #include "can_config.h"
-#include "can_device.h"
 
 struct can_frame {
 
