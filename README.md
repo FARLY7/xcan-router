@@ -24,3 +24,26 @@ Project uses the `cmake` build system.
 $ cmake .
 $ make
 ```
+
+## Example
+An example is provided which can be run on Linux using virtual SocketCAN interfaces.
+
+### Setup
+Enable the virtual CAN kernel module and create 2 virtual CAN interfaces:
+``` shell
+$ sudo modprobe vcan
+$ sudo ip link add dev vcan0 type vcan
+$ sudo ip link add dev vcan1 type vcan
+```
+
+Bring up the two vCAN interfaces:
+``` shell
+$ sudo ip link set up vcan0
+$ sudo ip link set up vcan1
+```
+
+### Running
+Send data to the CAN bus, use the `cansend` utility:
+```
+$ cansend can0 123#1122334455667788
+```
