@@ -33,7 +33,8 @@ int main(int argc, char *argv[])
     while(1)
     {
         xcan_stack_tick();
-        usleep(1000 * 500);
+        //usleep(1000 * 1000);
+        sleep(2);
     }
 
     return 0;

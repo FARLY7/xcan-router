@@ -8,16 +8,14 @@ struct xcan_frame {
     /* Connect for queues */
     struct xcan_frame *next;
 
-    /* XCAN frame ID */
-    uint16_t id;	
-
-    /* Start of whole buffer, total frame length */
-    uint8_t *buffer;
-    uint32_t buffer_len;
-
     /* Pointer to XCAN device this frame belongs to */
     struct xcan_device *dev;
 
+    uint32_t id;    /* 32 bit CAN_ID + EFF/RTR/ERR flags */
+    uint8_t  flags;  /* Flags */
+    uint16_t len;   /* Frame payload length in bytes */
+    uint8_t *data;  /* Frame payload buffer */
+    
     /* Pointer to frame usage count, which is stored in the last byte
        after the frame buffer */
     uint8_t *usage_count; 

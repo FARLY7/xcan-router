@@ -1,4 +1,5 @@
 #include "xcan_dev_socketcan.h"
+#include "xcan_stack.h"
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -25,17 +26,55 @@ struct xcan_device_socketcan {
 
 int prv_link_state(struct xcan_device *dev)
 {
+    struct xcan_device_socketcan *sc = (struct xcan_device_socketcan *) dev;
+    (void)sc;
+
     return 1;
 }
 
-int prv_send(struct xcan_device *self, void *buf, int len)
+int prv_send(struct xcan_device *self, uint32_t id, uint8_t flags, uint8_t *data, uint8_t len)
 {
-    dbg("XCAN sc: Sending %d bytes\n", len);
-    return 0;
+    struct xcan_device_socketcan *sc = (struct xcan_device_socketcan *) self;
+
+    struct canfd_frame frame;
+    frame.can_id = id;
+    frame.flags  = flags;
+    frame.len    = len;
+    memcpy(frame.data, data, len);
+    
+    int frame_len = 0;
+    int nbytes;
+
+    if(len > 8) {
+        frame_len = sizeof(struct canfd_frame);
+    } else{
+        frame_len = sizeof(struct can_frame);
+    }
+
+    nbytes = write(sc->fd, &frame, frame_len);
+    dbg("SocketCAN (%s): Sent %d bytes\n", sc->dev.name, nbytes);
+    return nbytes;
 }
 
 int prv_poll(struct xcan_device *self, int loop_score)
 {
+    struct xcan_device_socketcan *sc = (struct xcan_device_socketcan *) self;
+
+    struct canfd_frame f;
+    int nbytes;
+
+    nbytes = read(sc->fd, &f, sizeof(struct can_frame));
+
+    if(nbytes == CAN_MTU) {
+        dbg("SocketCAN (%s): Received CAN frame\n", sc->dev.name);
+    } else if(nbytes == CANFD_MTU) {
+        dbg("SocketCAN (%s): Received CAN-FD frame\n", sc->dev.name);
+    } else {
+        dbg("SocketCAN (%s): Received unknown frame\n", sc->dev.name);
+    }
+
+    xcan_stack_recv(self, f.can_id, f.flags, f.data, f.len);
+
     return 0;
 }
 
@@ -48,14 +87,18 @@ void xcan_socketcan_destroy(struct xcan_device *dev)
 {
     struct xcan_device_socketcan *sc = (struct xcan_device_socketcan *) dev;
 
+    if(close(sc->fd) < 0) {
+        dbg("SocketCAN (%s): Failed to close socket\n", sc->dev.name);
+    }
+
     free(sc);
-    dbg("Device %s destroyed.\n", sc->dev.name);
+    dbg("SocketCAN (%s): Destroyed.\n", sc->dev.name);
 }
 
 
 struct xcan_device* xcan_socketcan_create(uint8_t id, char *name)
 {
-    struct xcan_device_socketcan *sc = malloc(sizeof(struct xcan_device_socketcan));
+    struct xcan_device_socketcan *sc = XCAN_ZALLOC(sizeof(struct xcan_device_socketcan));
 
     struct sockaddr_can addr;
     struct ifreq ifr;
@@ -64,48 +107,35 @@ struct xcan_device* xcan_socketcan_create(uint8_t id, char *name)
         return NULL;
 
     /* Initialise SocketCAN interface */
-    if((sc->fd = socket(PF_CAN, SOCK_RAW, CAN_RAW)) < 0) {
-        dbg("Failed to open socketXCAN interface");
+    if((sc->fd = socket(PF_CAN, SOCK_RAW, CAN_RAW_FD_FRAMES)) < 0) {
+        dbg("SocketCAN (%s): Failed to open socket", name);
         return NULL;
     }
     
     /* Retrieve the correct interface name */
     strcpy(ifr.ifr_name, name);
     ioctl(sc->fd, SIOCGIFINDEX, &ifr);
-    //dbg("SocketCAN: %s at index %d\n", ifr.ifr_name, ifr.ifr_ifindex);
 
     /* Bind socket */
 	addr.can_family  = AF_CAN;
 	addr.can_ifindex = ifr.ifr_ifindex;
 	if(bind(sc->fd, (struct sockaddr *)&addr, sizeof(addr)) == -1) {
-		perror("SocketCAN: Error in socket bind");
+		perror("SocketCAN: Failed to bind socket");
 		return NULL;
 	}
 
-    /* Register SocketXCAN interface as XXCAN device */
+    /* Register SocketCAN interface as XCAN device */
     if( 0 != xcan_device_init((struct xcan_device *) sc, id, name)) {
-    
-        dbg("XCAN socketxcan init failed.\n");
+        dbg("SocketCAN (%s): Failed to init XCAN device\n", name);
         xcan_socketcan_destroy((struct xcan_device*) sc);
         return NULL;
     }
-
-	// struct can_frame frame;
-	// frame.can_id  = 0x123;
-	// frame.can_dlc = 2;
-	// frame.data[0] = 0x11;
-	// frame.data[1] = 0x22;
-	// int nbytes = write(sc->fd, &frame, sizeof(struct can_frame));
-    // dbg("SocketCAN: Sent %dB\n", nbytes);
-
-    /* Just immediately close for now */
-    close(sc->fd);
 
     /* Fill in vtable */
     sc->dev.link_state  = prv_link_state;
     sc->dev.send        = prv_send;
     sc->dev.poll        = prv_poll;
     sc->dev.destroy     = xcan_socketcan_destroy;
-    dbg("Device %s created\n", name);
+    dbg("SocketCAN (%s): XCAN Device created\n", name);
     return (struct xcan_device *) sc;
 }

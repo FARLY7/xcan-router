@@ -13,6 +13,7 @@ add_executable(XCAN_EXE
     stack/xcan_device.c
     stack/xcan_frame.c
     stack/xcan_stack.c
+    stack/xcan_router.c
     examples/linux/main.c
 )
 

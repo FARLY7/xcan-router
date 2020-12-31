@@ -41,6 +41,7 @@ Bring up the two virtual CAN interfaces:
 $ sudo ip link set up vcan0
 $ sudo ip link set up vcan1
 ```
+sudo ifconfig vcan0 up
 
 ### Running
 Send data to the CAN bus, use the `cansend` utility:

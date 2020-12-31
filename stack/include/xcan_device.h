@@ -15,7 +15,7 @@ struct xcan_device {
     struct xcan_queue *q_in;
     struct xcan_queue *q_out;
     int (*link_state)(struct xcan_device *self);
-    int (*send)(struct xcan_device *self, void *buf, int len);
+    int (*send)(struct xcan_device *self, uint32_t id, uint8_t flags, uint8_t *data, uint8_t len);
     int (*poll)(struct xcan_device *self, int loop_score);
     void (*destroy)(struct xcan_device *self);
 };

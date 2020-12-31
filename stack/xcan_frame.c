@@ -8,12 +8,13 @@ static struct xcan_frame* xcan_frame_do_alloc(uint32_t size)
         return NULL;
 
     /* Allocate space for frame payload and usage counter */
-    f->buffer = XCAN_ZALLOC(size + sizeof(uint8_t));
-    if(!f->buffer)
+    f->data = XCAN_ZALLOC(size + sizeof(uint8_t));
+    if(!f->data)
         XCAN_FREE(f);
 
-    f->buffer_len = size;
-    f->usage_count = (f->buffer + size);
+    f->len = size;
+    f->flags = 0;
+    f->usage_count = (f->data + size);
     return f;
 }
 
@@ -25,7 +26,7 @@ void xcan_frame_discard(struct xcan_frame *f)
     *(f->usage_count) += -1;
 
     if(*f->usage_count == 0) {
-        XCAN_FREE(f->buffer);
+        XCAN_FREE(f->data);
         XCAN_FREE(f);
     }
 }
@@ -56,10 +57,10 @@ struct xcan_frame* xcan_frame_deepcopy(struct xcan_frame *f)
     if(!f)
         return NULL;
 
-    new->buffer = XCAN_ZALLOC(new->buffer_len + sizeof(uint8_t));
-    memcpy(new->buffer, f->buffer, new->buffer_len);
+    new->data = XCAN_ZALLOC(new->len + sizeof(uint8_t));
+    memcpy(new->data, f->data, new->len);
 
-    new->usage_count = new->buffer + new->buffer_len;
+    new->usage_count = new->data + new->len;
     *(new->usage_count) = 1;
     return new;
 }
