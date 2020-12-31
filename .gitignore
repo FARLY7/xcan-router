@@ -1,5 +1,1 @@
-cmake_install.cmake
-CMakeCache.txt
-Makefile
-CMakeFiles/
-XCAN_EXE
+build/

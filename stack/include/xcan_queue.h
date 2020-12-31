@@ -1,17 +1,17 @@
-#ifndef CAN_QUEUE_H
-#define CAN_QUEUE_H
+#ifndef XCAN_QUEUE_H
+#define XCAN_QUEUE_H
 
-#include "can_config.h"
-#include "can_frame.h"
+#include "xcan_config.h"
+#include "xcan_frame.h"
 
-struct can_queue {
+struct xcan_queue {
     uint32_t frames;
     uint32_t max_frames;
-    struct can_frame *head;
-    struct can_frame *tail;
+    struct xcan_frame *head;
+    struct xcan_frame *tail;
 };
 
-static inline int can_enqueue(struct can_queue *q, struct can_frame *f)
+static inline int xcan_enqueue(struct xcan_queue *q, struct xcan_frame *f)
 {
     if((q->max_frames) &&  (q->frames >= q->max_frames)) {
         /* Queue full */
@@ -34,9 +34,9 @@ static inline int can_enqueue(struct can_queue *q, struct can_frame *f)
     return 0;
 }
 
-static inline struct can_frame* can_dequeue(struct can_queue *q)
+static inline struct xcan_frame* xcan_dequeue(struct xcan_queue *q)
 {
-    struct can_frame *f = q->head;
+    struct xcan_frame *f = q->head;
 
     if(!f)
         return NULL;
@@ -55,22 +55,22 @@ static inline struct can_frame* can_dequeue(struct can_queue *q)
     return f;
 }
 
-static inline struct can_frame* can_queue_peek(struct can_queue *q)
+static inline struct xcan_frame* xcan_queue_peek(struct xcan_queue *q)
 {
-    struct can_frame *f = q->head;
+    struct xcan_frame *f = q->head;
     if(q->frames < 1)
         return NULL;
     
     return f;
 }
 
-static inline void can_queue_empty(struct can_queue *q)
+static inline void xcan_queue_empty(struct xcan_queue *q)
 {
-    struct can_frame *f = can_dequeue(q);
+    struct xcan_frame *f = xcan_dequeue(q);
     while(f) {
-        can_frame_discard(f);
-        f = can_dequeue(q);
+        xcan_frame_discard(f);
+        f = xcan_dequeue(q);
     }
 }
 
-#endif /* CAN_QUEUE_H */
+#endif /* XCAN_QUEUE_H */

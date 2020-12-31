@@ -5,11 +5,11 @@ project(XCAN    VERSION 1.0
                 LANGUAGES C)
 
 add_executable(XCAN_EXE
-                modules/can_dev_softdevice.c
-                modules/can_dev_socketcan.c
-                stack/can_device.c
-                stack/can_frame.c
-                stack/can_stack.c
+                modules/xcan_dev_softdevice.c
+                modules/xcan_dev_socketcan.c
+                stack/xcan_device.c
+                stack/xcan_frame.c
+                stack/xcan_stack.c
                 examples/linux/main.c)
 
 target_include_directories(XCAN_EXE PUBLIC

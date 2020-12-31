@@ -1,13 +1,13 @@
-# CAN Routing Stack
+# XCAN Routing Stack
 
 ## Background
 
-CAN is a robust message-based multi-master bus protocol which is particularly dominant in the automotive industry. In large control systems with different domains, there are often several independent CAN buses with each bus connecting together the nodes of a particular domain in the system.
+XCAN is a robust message-based multi-master bus protocol which is particularly dominant in the automotive industry. In large control systems with different domains, there are often several independent CAN buses with each bus connecting together the nodes of a particular domain in the system.
 It is the role of a central **gateway/router** device to pass certain messages between each these buses to enable the sharing of information across domains.
 
-This is where the CAN Routing Stack fits in.
+This is where the XCAN Routing Stack fits in.
 
-The intention of this project is to provide an open-source CAN routing stack.
+The intention of this project is to provide an open-source XCAN routing stack.
 
 ## Features
 
@@ -36,7 +36,7 @@ $ sudo ip link add dev vcan0 type vcan
 $ sudo ip link add dev vcan1 type vcan
 ```
 
-Bring up the two vCAN interfaces:
+Bring up the two virtual CAN interfaces:
 ``` shell
 $ sudo ip link set up vcan0
 $ sudo ip link set up vcan1
