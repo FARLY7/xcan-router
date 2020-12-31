@@ -22,7 +22,7 @@ void xcan_frame_discard(struct xcan_frame *f)
     if(!f)
         return;
 
-    *f->usage_count--;
+    *(f->usage_count) += -1;
 
     if(*f->usage_count == 0) {
         XCAN_FREE(f->buffer);
@@ -60,6 +60,6 @@ struct xcan_frame* xcan_frame_deepcopy(struct xcan_frame *f)
     memcpy(new->buffer, f->buffer, new->buffer_len);
 
     new->usage_count = new->buffer + new->buffer_len;
-    *new->usage_count = 1;
+    *(new->usage_count) = 1;
     return new;
 }

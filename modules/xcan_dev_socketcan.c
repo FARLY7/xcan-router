@@ -31,7 +31,7 @@ int prv_send(struct xcan_device *self, void *buf, int len)
 
 int prv_poll(struct xcan_device *self, int loop_score)
 {
-
+    return 0;
 }
 
 /* ================================================================= */

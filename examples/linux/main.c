@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <time.h>
+#include <unistd.h>
 
 #include "xcan_stack.h"
 #include "xcan_dev_socketcan.h"
@@ -10,7 +10,11 @@ int main(int argc, char *argv[])
     struct xcan_device *dev0, *dev1;
 
     printf("***** XXCAN Linux Example *****\n");
+#ifdef DEBUG
     printf("Debug: Enabled\n\n");
+#else
+    printf("Debug: Disabled\n\n");
+#endif
 
     /* Initialise the XCAN stack */
     xcan_stack_init();

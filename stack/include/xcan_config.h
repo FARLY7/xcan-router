@@ -13,9 +13,9 @@
 
 #ifdef DEBUG
 #include <stdio.h>
-#define dbg(f, ...) printf(f, ...)
+#define dbg printf
 #else
-#define dbg(...) 
+#define dbg 
 #endif
 
 #define XCAN_ZALLOC(x) calloc(x, 0)
