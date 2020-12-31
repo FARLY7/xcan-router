@@ -12,18 +12,18 @@ struct can_device_softdevice {
 /* =======================      PRIVATE      ======================= */
 /* ================================================================= */
 
-int link_state(struct can_device *dev)
+int prv_link_state(struct can_device *dev)
 {
     return 1;
 }
 
-int send(struct can_device *self, void *buf, int len)
+int prv_send(struct can_device *self, void *buf, int len)
 {
-    printf("CAN SD: Sending %d bytes\n", len);
+    dbg("CAN SD: Sending %d bytes\n", len);
     return 0;
 }
 
-int poll(struct can_device *self, int loop_score)
+int prv_poll(struct can_device *self, int loop_score)
 {
 
 }
@@ -38,7 +38,7 @@ void can_softdevice_destroy(struct can_device *dev)
     struct can_device_softdevice *sd = (struct can_device_softdevice *) dev;
 
     free(sd);
-    printf("Device %s destroyed.\n", sd->dev.name);
+    dbg("Device %s destroyed.\n", sd->dev.name);
 }
 
 
@@ -51,15 +51,15 @@ struct can_device* can_softdevice_create(uint8_t id, char *name)
 
     if( 0 != can_device_init((struct can_device *) sd, id, name)) {
     
-        printf("CAN SoftDevice init failed.\n");
+        dbg("CAN SoftDevice init failed.\n");
         can_softdevice_destroy((struct can_device*) sd);
         return NULL;
     }
 
-    sd->dev.link_state = link_state;
-    sd->dev.send = send;
-    sd->dev.poll = poll;
-    sd->dev.destroy = can_softdevice_destroy;
-    printf("Device %s created\n", name);
+    sd->dev.link_state = prv_link_state;
+    sd->dev.send       = prv_send;
+    sd->dev.poll       = prv_poll;
+    sd->dev.destroy    = can_softdevice_destroy;
+    dbg("Device %s created\n", name);
     return (struct can_device *) sd;
 }

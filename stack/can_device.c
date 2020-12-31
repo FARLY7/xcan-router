@@ -23,6 +23,7 @@ int can_device_init(struct can_device *dev, uint8_t id, const char *name)
 
     /* Register device with device pool */
     devices[id] = dev;
+    return 0;
 }
 
 
@@ -35,6 +36,7 @@ void can_device_destroy(struct can_device *dev)
 int can_devices_loop(int loop_score, int direction)
 {
     /** @todo */
+    return 0;
 }
 
 struct can_device* can_get_device(uint8_t id)
