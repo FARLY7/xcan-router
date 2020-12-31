@@ -20,12 +20,12 @@ int main(int argc, char *argv[])
     xcan_stack_init();
 
     /* Create the SocketCAN interface 0 */
-    dev0 = xcan_socketcan_create(0, "SocketCAN-0");
+    dev0 = xcan_socketcan_create(0, "vcan0");
     if(!dev0)
         return -1;
 
     /* Create the SocketCAN interface 1 */
-    dev1 = xcan_socketcan_create(1, "SocketCAN-1");
+    dev1 = xcan_socketcan_create(1, "vcan1");
     if(!dev1)
         return -1;
 
