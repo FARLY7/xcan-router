@@ -1,12 +1,15 @@
 #include "xcan_dev_socketcan.h"
 
-#include "sys/socket.h"
+#include <net/if.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/ioctl.h>
 #include <linux/can.h>
 #include <linux/can/raw.h>
 
-struct xcan_device_socketxcan {	
+struct xcan_device_socketcan {	
     struct xcan_device dev;
-    // Anything else specific to socketxcan
+    // Anything else specific to SocketCAN
     int fd;
 };
 
@@ -36,18 +39,18 @@ int prv_poll(struct xcan_device *self, int loop_score)
 /* ================================================================= */
 
 
-void xcan_socketxcan_destroy(struct xcan_device *dev)
+void xcan_socketcan_destroy(struct xcan_device *dev)
 {
-    struct xcan_device_socketxcan *sc = (struct xcan_device_socketxcan *) dev;
+    struct xcan_device_socketcan *sc = (struct xcan_device_socketcan *) dev;
 
     free(sc);
     dbg("Device %s destroyed.\n", sc->dev.name);
 }
 
 
-struct xcan_device* xcan_socketxcan_create(uint8_t id, char *name)
+struct xcan_device* xcan_socketcan_create(uint8_t id, char *name)
 {
-    struct xcan_device_socketxcan *sc = malloc(sizeof(struct xcan_device_socketxcan));
+    struct xcan_device_socketcan *sc = malloc(sizeof(struct xcan_device_socketcan));
 
     if(!sc)
         return NULL;
@@ -67,7 +70,7 @@ struct xcan_device* xcan_socketxcan_create(uint8_t id, char *name)
     if( 0 != xcan_device_init((struct xcan_device *) sc, id, name)) {
     
         dbg("XCAN socketxcan init failed.\n");
-        xcan_socketxcan_destroy((struct xcan_device*) sc);
+        xcan_socketcan_destroy((struct xcan_device*) sc);
         return NULL;
     }
 
@@ -75,7 +78,7 @@ struct xcan_device* xcan_socketxcan_create(uint8_t id, char *name)
     sc->dev.link_state  = prv_link_state;
     sc->dev.send        = prv_send;
     sc->dev.poll        = prv_poll;
-    sc->dev.destroy     = xcan_socketxcan_destroy;
+    sc->dev.destroy     = xcan_socketcan_destroy;
     dbg("Device %s created\n", name);
     return (struct xcan_device *) sc;
 }
