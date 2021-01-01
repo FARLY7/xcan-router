@@ -23,9 +23,12 @@ int xcan_stack_recv(struct xcan_device * dev,
                     uint8_t              len);
 
 
-      
+
+int xcan_sendto_dev()
+
+
 /* ------- Initialisation ------- */
-int xcan_stack_init(void);
+int xcan_stack_init(struct xcan_routing_table *routing_table);
 
 /* ------- Loop Function -------- */
 void xcan_stack_tick(void);

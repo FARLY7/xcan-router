@@ -15,6 +15,7 @@ add_executable(XCAN_EXE
     stack/xcan_stack.c
     stack/xcan_router.c
     examples/linux/main.c
+    examples/linux/routing_table.c
 )
 
 target_include_directories(XCAN_EXE PUBLIC

@@ -1,6 +1,9 @@
 #include "xcan_stack.h"
 #include "xcan_router.h"
 
+#define XCAN_LOOP_DIR_IN    0
+#define XCAN_LOOP_DIR_OUT   1
+
 
 /*******************************************************************************
  *  DATALINK LAYER
@@ -45,8 +48,11 @@ int xcan_stack_recv(struct xcan_device * dev,
 
 
 /* ------- Initialisation ------- */
-int xcan_stack_init(void)
+int xcan_stack_init(struct xcan_routing_table *routing_table)
 {
+    /* Initialise XCAN Router */
+    if(!xcan_router_init(routing_table))
+        return 1;
 
     return 0;
 }
@@ -54,13 +60,11 @@ int xcan_stack_init(void)
 /* ------- Loop Function -------- */
 void xcan_stack_tick(void)
 {
-    int frames;
+    int loop_score = 20;
 
     /* Receive up to 10 CAN frames into the stack */
-    frames = xcan_devices_loop(10, 0);
-    dbg("XCAN: %d frames received\n", 10-frames);
+    loop_score = xcan_devices_loop(loop_score, XCAN_LOOP_DIR_IN);
 
     /* Send up to 10 CAN frames out of the stack */
-    frames = xcan_devices_loop(10, 1);
-    dbg("XCAN: %d frames sent\n", 10-frames);
+    loop_score = xcan_devices_loop(loop_score, XCAN_LOOP_DIR_OUT);
 }

@@ -4,6 +4,7 @@
 #include "xcan_stack.h"
 #include "xcan_dev_socketcan.h"
 
+extern struct xcan_routing_table routing_table;
 
 int main(int argc, char *argv[])
 {
@@ -16,24 +17,28 @@ int main(int argc, char *argv[])
     printf("Debug: Disabled\n\n");
 #endif
 
-    /* Initialise the XCAN stack */
-    xcan_stack_init();
+    /**
+     * Initialise XCAN stack.
+     */
+    xcan_stack_init(&routing_table);
 
-    /* Create the SocketCAN interface 0 */
+    /**
+     * Register CAN-bus interfaces.
+     */
     dev0 = xcan_socketcan_create(0, "vcan0");
     if(!dev0)
         return -1;
 
-    /* Create the SocketCAN interface 1 */
     dev1 = xcan_socketcan_create(1, "vcan1");
     if(!dev1)
         return -1;
 
-    /* Enter a forever loop, processing XCAN frames */
+    /**
+     * Process CAN frames.
+     */
     while(1)
     {
         xcan_stack_tick();
-        //usleep(1000 * 1000);
         sleep(2);
     }
 
